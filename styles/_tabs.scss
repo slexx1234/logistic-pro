@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+
+  &__item {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.7rem;
+    border-bottom: 0.5rem solid transparent;
+    transition: 0.3s linear border-color;
+    color: #fff;
+    padding: 2rem 1.7rem;
+    cursor: pointer;
+
+    &--active {
+      border-color: #fff;
+    }
+
+    + .tabs__item {
+      margin-left: 3.4rem;
+    }
+  }
+}

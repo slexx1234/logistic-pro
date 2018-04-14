@@ -1,0 +1,33 @@
+.checkbox {
+  display: flex;
+  cursor: pointer;
+
+  &__indicator {
+    width: 1.8rem;
+    height: 1.8rem;
+    background: #A2D2F8;
+    border-radius: 0.3rem;
+    margin-top: 0.4rem;
+    display: flex;
+    .fa-icon {
+      margin: auto;
+      color: #fff;
+      opacity: 0;
+      transition: 0.3s linear opacity;
+    }
+  }
+
+  &--checked &__indicator .fa-icon {
+    opacity: 1;
+  }
+
+  &__label {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.3rem;
+    color: #fff;
+    padding-left: 1rem;
+    padding-right: 1.4rem;
+    line-height: 1;
+  }
+}
+

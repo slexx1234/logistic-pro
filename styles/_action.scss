@@ -1,0 +1,15 @@
+.action {
+  display: flex;
+  width: 4.5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  text-align: center;
+  border-radius: 50%;
+  border: 0.2rem dashed #fff;
+  color: #fff;
+  cursor: pointer;
+
+  .fa-icon {
+    margin: auto;
+  }
+}

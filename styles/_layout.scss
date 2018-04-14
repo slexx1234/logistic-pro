@@ -1,0 +1,39 @@
+html {
+    font-size: 10px;
+    background: #F4F4F4;
+}
+
+.header {
+    background: #2196F2;
+    width: 2300px;
+    padding-top: 4.3rem;
+    box-shadow: 0 0 2rem 0.5rem rgba(black, 0.2);
+    .logo {
+        margin-top: 1.2rem;
+        margin-right: 23.9rem;
+    }
+    &__top {
+        display: flex;
+    }
+    &__bottom {
+        margin-top: 2.3rem;
+        display: flex;
+        .checkbox {
+            margin-left: auto;
+            margin-top: 3rem;
+        }
+    }
+    &__actions {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        * + * {
+            margin-left: 3rem;
+        }
+    }
+}
+.container {
+    width: 91%;
+    margin: auto;
+}
+

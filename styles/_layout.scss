@@ -3,9 +3,13 @@ html {
     background: #F4F4F4;
 }
 
+.header,
+.footer {
+    width: 2300px;
+}
+
 .header {
     background: #2196F2;
-    width: 2300px;
     padding-top: 4.3rem;
     box-shadow: 0 0 2rem 0.5rem rgba(black, 0.2);
     .logo {
@@ -32,6 +36,16 @@ html {
         }
     }
 }
+
+.footer {
+    background: #fff;
+    box-shadow: 0 0 2rem 0.5rem rgba(black, 0.2);
+    color: #6E7274;
+    font-size: 2.5rem;
+    padding: 3rem 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
 .container {
     width: 91%;
     margin: auto;

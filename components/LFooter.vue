@@ -1,7 +1,7 @@
 <template>
     <footer class="footer">
         <l-container>
-            Выбран 1 елемент
+            Выбран 1 элемент
         </l-container>
     </footer>
 </template>

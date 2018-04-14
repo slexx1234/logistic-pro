@@ -1,10 +1,27 @@
 html {
     font-size: 10px;
+    @media (max-width: 1800px) {
+        font-size: 9px;
+    }
+    @media (max-width: 1700px) {
+        font-size: 8px;
+    }
+    @media (max-width: 1600px) {
+        font-size: 7px;
+    }
+    @media (max-width: 1500px) {
+        font-size: 6px;
+    }
 }
 
 body {
-    width: 2300px;
     background: #F4F4F4;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header {
@@ -14,6 +31,12 @@ body {
     .logo {
         margin-top: 1.2rem;
         margin-right: 23.9rem;
+        @media (max-width: 1900px) {
+            margin-right: 10rem;
+        }
+        @media (max-width: 1400px) {
+            margin-right: 3rem;
+        }
     }
     &__top {
         display: flex;
@@ -38,7 +61,8 @@ body {
 
 .footer {
     background: #fff;
-    box-shadow: 0 0 2rem 0.5rem rgba(black, 0.2);
+    margin-top: auto;
+    box-shadow: 0 0 2rem 0.5rem rgba(black, 0.1);
     color: #6E7274;
     font-size: 2.5rem;
     padding: 3rem 0;
@@ -47,6 +71,6 @@ body {
 
 .container {
     width: 91%;
-    margin: auto;
+    margin: 0 auto;
 }
 

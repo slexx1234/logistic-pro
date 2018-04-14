@@ -15,7 +15,7 @@ export default {
         },
 
         setToken(state, token) {
-            state.token = token;
+            state.accessToken = token;
             Cookies.set('token', JSON.stringify(token));
         },
 
@@ -24,7 +24,7 @@ export default {
         },
 
         removeToken(state) {
-            state.token = null;
+            state.accessToken = null;
             Cookies.remove('token');
         },
     },
@@ -43,12 +43,12 @@ export default {
                 axios
                     .get('user', {
                         headers: {
-                            Authorization: ' ' + state.accessToken,
+                            Authorization: 'Bearer ' + state.accessToken,
                         }
                     })
                     .then(result => {
-                        commit('setUser', result.data);
-                        resolve(result.data);
+                        commit('setUser', result.data.data);
+                        resolve(result.data.data);
                     })
                     .catch(reject);
             });
@@ -64,7 +64,7 @@ export default {
                 axios
                     .post('login', data)
                     .then(result => {
-                        commit('setToken', result.data.accessToken);
+                        commit('setToken', result.data.data.access_token);
                         dispatch('getProfile')
                             .then(profile => {
                                 resolve(profile);

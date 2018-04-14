@@ -1,5 +1,5 @@
 <template>
-    <img src="/avatar.png" class="avatar"/>
+    <img :src="$store.state.auth.user.avatar" class="avatar"/>
 </template>
 
 <script>

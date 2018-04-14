@@ -17,17 +17,17 @@ export default {
         nuxtServerInit({ commit, dispatch, reject }, { req }) {
             return new Promise(resolve => {
                 if (typeof req.headers.cookie === 'string') {
-                    let tokens = /token[^;]+/.exec(req.headers.cookie);
-                    tokens = decodeURIComponent(!!tokens ? tokens.toString().replace(/^[^=]+./, '') : '');
+                    let token = /token[^;]+/.exec(req.headers.cookie);
+                    token = decodeURIComponent(!!token ? token.toString().replace(/^[^=]+./, '') : '');
 
                     try {
-                        tokens = JSON.parse(tokens);
+                        token = JSON.parse(token);
                     } catch (e) {
-                        tokens = null;
+                        token = null;
                     }
 
-                    if (tokens) {
-                        commit('auth/setToken', tokens);
+                    if (token) {
+                        commit('auth/setToken', token);
                         dispatch('auth/getProfile')
                             .then(user => resolve(true))
                             .catch(() => resolve(false));

@@ -36,7 +36,7 @@
     import LLogo from "../components/LLogo";
 
     export default {
-        layout: 'auth',
+        middleware: 'guest',
 
         components: {
             LLogo,

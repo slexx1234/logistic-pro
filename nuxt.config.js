@@ -24,6 +24,8 @@ module.exports = {
     loading: { color: '#fff' },
 
     plugins: [
+        './plugins/configure.js',
+        './plugins/vee-validate.js',
         './plugins/icon.js',
     ],
 

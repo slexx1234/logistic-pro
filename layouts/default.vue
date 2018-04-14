@@ -1,8 +1,8 @@
 <template>
     <l-layout>
-        <l-header/>
+        <l-header v-if="$store.state.auth.user"/>
         <nuxt/>
-        <l-footer/>
+        <l-footer v-if="$store.state.auth.user"/>
     </l-layout>
 </template>
 

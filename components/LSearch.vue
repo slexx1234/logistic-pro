@@ -1,7 +1,6 @@
 <template>
     <div class="search">
-        <input class="search__input" placeholder="Поиск посылок"/>
-        <icon class="search__icon" name="search"/>
+        <l-field class="search__field" v-model="mutatedValue" icon-right="search" placeholder="Поиск посылок"/>
         <div class="search__result items__content" v-show="false">
             <div class="search__item">
                 <div class="search__item-top">
@@ -30,7 +29,10 @@
 </template>
 
 <script>
+    import LField from "./LField";
+
     export default {
+        components: {LField},
         name: 'l-search',
         model: {
             prop: 'value',
@@ -38,6 +40,16 @@
         },
         props: {
             value: String,
-        }
+        },
+        data() {
+            return {
+                mutatedValue: this.value,
+            };
+        },
+        watch: {
+            mutatedValue(value) {
+                this.$emit('input', value);
+            },
+        },
     }
 </script>

@@ -1,0 +1,14 @@
+.block {
+  background: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+
+  &__header {
+    background: $color-primary;
+    padding: 5rem;
+  }
+
+  &__content {
+    padding: 5rem;
+  }
+}

@@ -76,14 +76,14 @@
       color: #2196F2;
     }
     &--send {
-      color: #39C675;
+      color: $color-success;
     }
   }
 
   &__important {
     font-weight: 600;
     &--high {
-      color: #E7164C;
+      color: $color-danger;
     }
   }
 

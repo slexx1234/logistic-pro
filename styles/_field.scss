@@ -1,0 +1,71 @@
+.field {
+  margin-bottom: 5rem;
+
+  &__label {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    width: 100%;
+    height: 7.3rem;
+    border: none;
+    border-radius: 3px;
+    background: rgba(black, 0.1);
+    padding: 0.5rem 2.7rem;
+    color: #333;
+    font-size: 2.1rem;
+    font-family: 'Ubuntu', sans-serif;
+    transition: 0.3s linear box-shadow;
+    &::placeholder {
+      color: #fff;
+    }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5rem rgba(black, 0.1);
+    }
+  }
+
+  &__help {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 2.1rem;
+
+    &--danger {
+      color: $color-danger;
+    }
+
+    &--sucess {
+      color: $color-success;
+    }
+  }
+
+  &__control {
+    position: relative;
+
+    &--icon-left .field__input {
+      padding-left: 6.7rem;
+    }
+
+    &--icon-right .field__input {
+      padding-right: 6.7rem;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 2.6rem;
+    color: #333;
+    width: 2.3rem;
+    height: 2.3rem;
+    pointer-events: none;
+
+    &--right {
+      right: 2.4rem;
+    }
+
+    &--left {
+      left: 2.4rem;
+    }
+  }
+}

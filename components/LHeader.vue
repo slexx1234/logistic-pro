@@ -42,6 +42,6 @@
             LSearch,
             LLogo,
             LContainer},
-        name: 'l-header'
+        name: 'l-header',
     }
 </script>

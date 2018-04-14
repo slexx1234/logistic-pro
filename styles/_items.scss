@@ -1,0 +1,104 @@
+.items {
+  width: 100%;
+  font-family: 'Ubuntu', sans-serif;
+  margin: 1.1rem 0 4rem 0;
+
+  &__header {
+    border-bottom: 1px solid #DADADA;
+
+    th {
+      padding: 2.5rem 3rem;
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: #9E9E9E;
+    }
+  }
+
+  &__content {
+    &:before {
+      content: "-";
+      display: block;
+      line-height: 3rem;
+      color: transparent;
+    }
+    $border-radius: 0.5rem;
+    tr {
+      &:first-child td:first-child {
+        border-top-left-radius: $border-radius;
+      }
+      &:last-child td:last-child {
+        border-top-right-radius: $border-radius;
+      }
+      &:last-child td:first-child {
+        border-bottom-left-radius: $border-radius;
+      }
+      &:last-child td:last-child {
+        border-bottom-right-radius: $border-radius;
+      }
+    }
+    td {
+      background: #fff;
+      padding: 3.5rem 3rem;
+      font-size: 2.1rem;
+      line-height: 1.5;
+    }
+  }
+
+  &__code {
+    font-weight: 600;
+    color: #5E6265;
+  }
+
+  &__location {
+    font-weight: 600;
+    color: #5E6265;
+  }
+
+  &__sender,
+  &__direction {
+    color: #5E6265;
+  }
+
+  &__status {
+    font-weight: 600;
+    &--handed {
+      color: #2196F2;
+    }
+  }
+
+  &__important {
+    font-weight: 600;
+    &--high {
+      color: #E7164C;
+    }
+  }
+
+  &__checkbox .checkbox {
+    float: right;
+    &__indicator {
+      width: 3.2rem;
+      height: 3.2rem;
+      border-radius: 50%;
+      background: transparent;
+      margin: 0;
+      border: 2px solid #CDCDCD;
+      .fa-icon {
+        display: none;
+      }
+      &:before {
+        content: '';
+        display: block;
+        background: #ACACAC;
+        opacity: 0;
+        transition: 0.3s linear opacity;
+        margin: auto;
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+      }
+    }
+    &--checked .checkbox__indicator:before {
+      opacity: 1;
+    }
+  }
+}

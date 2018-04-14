@@ -20,6 +20,7 @@
       display: block;
       line-height: 3rem;
       color: transparent;
+      pointer-events: none;
     }
     $border-radius: 0.5rem;
     tr {
@@ -54,6 +55,7 @@
     color: #5E6265;
   }
 
+  &__time,
   &__sender,
   &__direction {
     color: #5E6265;
@@ -63,6 +65,9 @@
     font-weight: 600;
     &--handed {
       color: #2196F2;
+    }
+    &--send {
+      color: #39C675;
     }
   }
 

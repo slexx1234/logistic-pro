@@ -34,6 +34,10 @@
 
         watch: {
             page(page) {
+                // Вероятно надо менять URL, но надо ещё держать скрол
+                // на одном месте, потом как нибудь TODO
+                // this.$router.push('/parcels/' + page);
+
                 this.$store.dispatch('parcels/loadPage', page);
             },
         },

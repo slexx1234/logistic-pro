@@ -1,0 +1,6 @@
+.button-group {
+  display: flex;
+  .button + .button {
+    margin-left: 3rem;
+  }
+}

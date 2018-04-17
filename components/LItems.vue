@@ -79,6 +79,7 @@
         watch: {
             items(items) {
                 this.selected = [];
+                this.$emit('select', this.selected);
             },
         },
         methods: {

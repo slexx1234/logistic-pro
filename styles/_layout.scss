@@ -76,6 +76,14 @@ $footer-height: 9.75rem;
     left: 0;
     right: 0;
     height: $footer-height;
+
+    .container {
+        display: flex;
+    }
+
+    &__actions {
+        margin-left: auto;
+    }
 }
 
 .container {

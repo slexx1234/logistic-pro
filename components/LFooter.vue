@@ -1,21 +1,42 @@
 <template>
     <footer class="footer">
         <l-container>
-            <template v-if="items.length === 0">
+            <div class="footer__text" v-if="items.length === 0">
                 Ничего не выбрано
-            </template>
-            <template v-else>
+            </div>
+            <div class="footer__text" v-if="items.length > 0">
                 {{ plural(items.length, 'Выбран', 'Выбрано', 'Выбрано') }} {{ items.length }} {{ plural(items.length, 'элемент', 'элемента', 'элементов') }}
-            </template>
+            </div>
+            <transition name="fade">
+                <l-button-group class="footer__actions" v-if="items.length > 0">
+                    <l-button small warning>
+                        <icon name="edit"/>
+                        Изменить
+                    </l-button>
+                    <l-button small danger>
+                        <icon name="times"/>
+                        Удалить
+                    </l-button>
+                    <l-button small>
+                        <icon name="ban"/>
+                        Отмена
+                    </l-button>
+                </l-button-group>
+            </transition>
         </l-container>
     </footer>
 </template>
 
 <script>
     import LContainer from "./LContainer";
+    import LButtonGroup from "./LButtonGroup";
+    import LButton from "./LButton";
 
     export default {
-        components: {LContainer},
+        components: {
+            LButton,
+            LButtonGroup,
+            LContainer},
         name: 'l-footer',
         props: {
             items: Array,

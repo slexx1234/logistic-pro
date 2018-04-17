@@ -9,12 +9,18 @@
         name: 'l-button',
         props: {
             primary: Boolean,
+            small: Boolean,
+            warning: Boolean,
+            danger: Boolean,
         },
         computed: {
             classes() {
                 let result = ['button'];
 
                 if (this.primary) result.push('button--primary');
+                if (this.small) result.push('button--small');
+                if (this.warning) result.push('button--warning');
+                if (this.danger) result.push('button--danger');
 
                 return result;
             }

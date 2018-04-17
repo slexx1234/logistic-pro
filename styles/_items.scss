@@ -2,6 +2,7 @@
   margin: 1.1rem 0 4rem 0;
   max-width: 100%;
   overflow: auto;
+  position: relative;
 
   &__table {
     width: 100%;
@@ -73,7 +74,7 @@
   &__status {
     font-weight: 600;
     &--handed {
-      color: #2196F2;
+      color: $color-primary;
     }
     &--send {
       color: $color-success;
@@ -82,6 +83,9 @@
 
   &__important {
     font-weight: 600;
+    &--low {
+      color: $color-primary;
+    }
     &--high {
       color: $color-danger;
     }
@@ -113,6 +117,21 @@
     }
     &--checked .checkbox__indicator:before {
       opacity: 1;
+    }
+  }
+
+  &__spinner {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    background: rgba(white, 0.75);
+
+    > .spinner {
+      margin: auto;
     }
   }
 }

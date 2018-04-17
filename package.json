@@ -20,9 +20,11 @@
     "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "js-cookie": "^2.2.0",
+    "lodash.range": "^3.2.0",
     "nuxt": "^1.0.0",
     "vee-validate": "^2.0.6",
-    "vue-awesome": "^3.0.0"
+    "vue-awesome": "^3.0.0",
+    "vue-simple-spinner": "^1.2.8"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

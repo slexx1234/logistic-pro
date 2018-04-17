@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <l-field class="search__field" v-model="mutatedValue" icon-right="search" placeholder="Поиск посылок"/>
-        <div class="search__result items__content" v-show="false">
+        <div class="search__result items__content" v-if="false">
             <div class="search__item">
                 <div class="search__item-top">
                     <div class="items__code">LP09080-RS</div>

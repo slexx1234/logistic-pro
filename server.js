@@ -65,12 +65,12 @@ for (let i = 0; i < 1000; i++) {
 app.get('/parcels', (req, res) => {
     const page = Number(req.query.page);
     let result = {
-        data: parcels.slice(page * 10, page * 10 + 10),
+        data: parcels.slice(page * 10 - 10, page * 10),
         meta: {
             pagination: {
                 total: parcels.length,
                 total_pages: Math.ceil(parcels.length / 10),
-                current_page: page,
+                current_page: page, // Не понятно нафик это надо, в url же передаётся
             }
         },
     };

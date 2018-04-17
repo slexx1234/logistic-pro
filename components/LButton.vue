@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'button',
+        name: 'l-button',
         props: {
             primary: Boolean,
         },

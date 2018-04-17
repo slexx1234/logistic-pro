@@ -1,0 +1,15 @@
+.pagination {
+  margin-bottom: 4rem;
+  display: flex;
+
+  &__item:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &__item:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+

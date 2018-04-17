@@ -1,8 +1,10 @@
 import auth from './auth';
+import parcels from './parcels';
 
 export default {
     modules: {
         auth,
+        parcels,
     },
 
     actions: {

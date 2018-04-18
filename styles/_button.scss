@@ -9,10 +9,6 @@
   &:active {
     background: darken($background, 20);
   }
-
-  &:focus {
-    box-shadow: 0 0 0 3px rgba($background, 0.75);
-  }
 }
 
 .button {
@@ -25,10 +21,12 @@
   font-family: 'Ubuntu', sans-serif;
   transition: 0.3s linear;
   padding: 0.5rem 2.7rem;
+  border-radius: 3px;
   transition-property: color, background-color, box-shadow;
 
   &:focus {
     outline: none;
+    box-shadow: 0 0 5rem rgba(black, 0.2);
   }
 
   @include button-variant(#e2e0e0, #333);

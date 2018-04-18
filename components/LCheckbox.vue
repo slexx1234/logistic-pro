@@ -1,5 +1,5 @@
 <template>
-    <div :class="classes" @click="checkedMutated = !checkedMutated">
+    <div :class="classes" @click="toggle">
         <div class="checkbox__indicator">
             <icon name="check"/>
         </div>
@@ -32,9 +32,15 @@
             }
         },
         watch: {
-            checkedMutated(isChecked) {
-                this.$emit('change', isChecked);
+            checked(isChecked) {
+                this.checkedMutated = isChecked;
             },
         },
+        methods: {
+            toggle() {
+                this.checkedMutated = !this.checkedMutated;
+                this.$emit('change', this.checkedMutated);
+            }
+        }
     }
 </script>

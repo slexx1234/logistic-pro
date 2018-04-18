@@ -1,8 +1,14 @@
 const express = require('express');
 const faker = require('faker');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.use(cors());
 
 faker.locale = 'ru';
@@ -44,7 +50,7 @@ function city() {
     });
 }
 
-const parcels = [];
+let parcels = [];
 
 for (let i = 0; i < 1000; i++) {
     parcels.push({
@@ -76,6 +82,37 @@ app.get('/parcels', (req, res) => {
     };
 
     res.send(result);
+});
+
+app.delete('/parcels/:parcel', (req, res) => {
+    let i = 0;
+    for(let parcel of parcels) {
+        if (parcel.key == req.params.parcel) {
+            parcels.splice(i, 1);
+            break;
+        }
+        i++;
+    }
+
+    res.send({
+        result: true,
+    });
+});
+
+app.post('/parcels/:parcel', (req, res) => {
+    let i = 0;
+    for(let parcel of parcels) {
+        if (parcel.key == req.params.parcel) {
+            parcels[i].status = req.body.status;
+            parcels[i].location = req.body.location;
+            break;
+        }
+        i++;
+    }
+
+    res.send({
+        result: true,
+    });
 });
 
 app.listen(3333, () => console.log('Example app listening on port 3333!'));

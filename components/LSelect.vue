@@ -1,45 +1,41 @@
 <template>
-    <div :class="wrapClasses">
-        <label class="field__label" :for="id" v-if="label" v-text="label"></label>
-        <div :class="controlClasses">
-            <textarea :class="inputClasses"
-                      :placeholder="placeholder"
-                      :id="id"
-                      :name="id"
-                      v-model="mutatedValue"
-                      v-if="multiline"></textarea>
+    <no-ssr>
+        <div :class="wrapClasses">
+            <label class="field__label" :for="id" v-if="label" v-text="label"></label>
+            <div :class="controlClasses">
+                <v-select v-model="mutatedValue" :searchable="searchable" :options="options"/>
 
-            <input :class="inputClasses"
-                   :type="type"
-                   :placeholder="placeholder"
-                   :id="id"
-                   :name="id"
-                   v-model="mutatedValue"
-                   v-else>
-
-            <span class="field__icon field__icon--left" v-if="iconLeft">
-                <icon :name="iconLeft"/>
-            </span>
-            <span class="field__icon field__icon--right" v-if="iconRight">
-                <icon :name="iconRight"/>
-            </span>
+                <span class="field__icon field__icon--left" v-if="iconLeft">
+                    <icon :name="iconLeft"/>
+                </span>
+                <span class="field__icon field__icon--right" v-if="iconRight">
+                    <icon :name="iconRight"/>
+                </span>
+            </div>
+            <p class="field__help" v-if="help" v-text="help"></p>
+            <p class="field__help field__help--success" v-if="success" v-text="success"></p>
+            <p class="field__help field__help--danger" v-if="error" v-text="error"></p>
         </div>
-        <p class="field__help" v-if="help" v-text="help"></p>
-        <p class="field__help field__help--success" v-if="success" v-text="success"></p>
-        <p class="field__help field__help--danger" v-if="error" v-text="error"></p>
-    </div>
+    </no-ssr>
 </template>
 
 <script>
+    const components = {};
+
+    if (process.browser) {
+        components['v-select'] = require('vue-select').default;
+    }
+
     export default {
+        name: 'l-select',
+        components,
         model: {
+            event: 'change',
             prop: 'value',
-            event: 'input',
         },
-        name: 'l-field',
         props: {
             id: String,
-            value: String,
+            value: [String, Object, Number],
             label: String,
             iconLeft: String,
             iconRight: String,
@@ -50,6 +46,8 @@
             type: String,
             multiline: Boolean,
             small: Boolean,
+            options: Array,
+            searchable: Boolean,
         },
         computed: {
             controlClasses() {
@@ -70,10 +68,10 @@
                 return {
                     field: true,
                     'field--small': this.small,
+                    'field--select': true,
                 };
             },
         },
-
         data() {
             return {
                 mutatedValue: this.value,
@@ -81,7 +79,7 @@
         },
         watch: {
             mutatedValue(value) {
-                this.$emit('input', value);
+                this.$emit('change', value);
             },
         },
         methods: {

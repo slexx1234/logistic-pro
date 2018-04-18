@@ -16,7 +16,7 @@
                     <l-tabs-item>Главная</l-tabs-item>
                     <l-tabs-item active>Посылки</l-tabs-item>
                 </l-tabs>
-                <l-checkbox>Выбрать все</l-checkbox>
+                <l-checkbox @change="selectAll" :checked="isSelectedAll">Выбрать все</l-checkbox>
             </div>
         </l-container>
     </header>
@@ -41,7 +41,27 @@
             LAvatar,
             LSearch,
             LLogo,
-            LContainer},
+            LContainer,
+        },
         name: 'l-header',
+        computed: {
+            isSelectedAll() {
+                for(let key in this.$store.state.parcels.selected) {
+                    if (this.$store.state.parcels.selected[key] !== true) {
+                        return false;
+                    }
+                }
+                return true;
+            },
+        },
+        methods: {
+            selectAll() {
+                if (this.isSelectedAll) {
+                    this.$store.commit('parcels/clearSelected');
+                } else {
+                    this.$store.commit('parcels/selectAll');
+                }
+            }
+        },
     }
 </script>

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.2",
     "bootstrap": "^4.1.0",
     "cors": "^2.8.4",
     "express": "^4.16.3",
@@ -24,6 +25,7 @@
     "nuxt": "^1.0.0",
     "vee-validate": "^2.0.6",
     "vue-awesome": "^3.0.0",
+    "vue-select": "^2.4.0",
     "vue-simple-spinner": "^1.2.8"
   },
   "devDependencies": {

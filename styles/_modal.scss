@@ -1,0 +1,60 @@
+.modal {
+  transition: 0.3s linear opacity;
+  background: rgba(black, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  cursor: pointer;
+
+  &__container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 0 5rem rgba(black, 0.1);
+    margin: auto;
+    transition: 0.3s linear transform;
+    padding: 3rem;
+    position: relative;
+    cursor: default;
+  }
+
+  &__close {
+    position: absolute;
+    right: -5rem;
+    top: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.5;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+    transition: 0.3s linear opacity;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    > .fa-icon {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal__container,
+.modal-leave-active .modal__container {
+  transform: scale(1.1);
+}

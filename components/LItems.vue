@@ -41,7 +41,7 @@
                     </td>
                     <td class="items__sender">{{ item.sender }}</td>
                     <td class="items__checkbox">
-                        <l-checkbox @change="changeSelect(item.key)"/>
+                        <l-checkbox @change="changeSelect(item.key)" :checked="$store.state.parcels.selected[item.key]"/>
                     </td>
                 </tr>
             </tbody>
@@ -57,10 +57,12 @@
 <script>
     import LCheckbox from "../components/LCheckbox";
     import LSpinner from "./LSpinner";
+    import LButton from "./LButton";
 
     export default {
         name: 'l-items',
         components: {
+            LButton,
             LSpinner,
             LCheckbox,
         },
@@ -71,25 +73,17 @@
                 type: Boolean,
             },
         },
-        data() {
-            return {
-                selected: [],
-            };
-        },
+
         watch: {
             items(items) {
-                this.selected = [];
-                this.$emit('select', this.selected);
+                this.$emit('select');
             },
         },
+
         methods: {
             changeSelect(id) {
-                if (this.selected.includes(id)) {
-                    this.selected.splice(this.selected.indexOf(id), 1);
-                } else {
-                    this.selected.push(id);
-                }
-                this.$emit('select', this.selected);
+                this.$store.commit('parcels/select', { id, value: !this.$store.state.parcels.selected[id] });
+                this.$emit('select');
             },
         }
     }

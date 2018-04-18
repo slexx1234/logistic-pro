@@ -14,9 +14,9 @@
             <div class="header__bottom">
                 <l-tabs>
                     <l-tabs-item>Главная</l-tabs-item>
-                    <l-tabs-item active>Посылки</l-tabs-item>
+                    <l-tabs-item @click.native="$router.push('/')" active>Посылки</l-tabs-item>
                 </l-tabs>
-                <l-checkbox @change="selectAll" :checked="isSelectedAll">Выбрать все</l-checkbox>
+                <l-checkbox v-if="$route.path === '/'" @change="selectAll" :checked="isSelectedAll">Выбрать все</l-checkbox>
             </div>
         </l-container>
     </header>

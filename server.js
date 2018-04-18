@@ -84,6 +84,17 @@ app.get('/parcels', (req, res) => {
     res.send(result);
 });
 
+app.get('/parcels/:parcel', (req, res) => {
+    for(let parcel of parcels) {
+        if (parcel.key == req.params.parcel) {
+            res.send({
+                data: parcel
+            });
+            break;
+        }
+    }
+});
+
 app.delete('/parcels/:parcel', (req, res) => {
     let i = 0;
     for(let parcel of parcels) {

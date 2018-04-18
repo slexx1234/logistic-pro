@@ -1,0 +1,13 @@
+.alert {
+  background: #fff;
+  padding: 3.5rem 3rem;
+  font-size: 2.1rem;
+  line-height: 1.5;
+  border-radius: 0.5rem;
+  margin-bottom: 4rem;
+
+  &--danger {
+    background: $color-danger;
+    color: #ffffff;
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ items: true, 'items--loading': loading }">
+    <div :class="{ items: true, 'items--loading': loading, 'items--clickable': clickable }">
         <table class="items__table">
             <thead class="items__header">
                 <tr>
@@ -9,15 +9,15 @@
                     <th width="200">Статус</th>
                     <th width="200">Выжность</th>
                     <th>Отправитель</th>
-                    <th></th>
+                    <th v-if="selectable"></th>
                 </tr>
             </thead>
             <tbody class="items__content">
                 <tr v-if="Array.isArray(items) && items.length > 0" v-for="item in items" :key="item.key">
-                    <td class="items__code" v-text="item.code"></td>
-                    <td class="items__direction">{{ item.from }} <icon name="angle-right"/> {{ item.to }}</td>
-                    <td class="items__location"><icon name="location-arrow"/> {{ item.location }}</td>
-                    <td :class="{ 'items__status': true, ['items__status--' + item.status]: true }">
+                    <td class="items__code" v-text="item.code" @click="to(item)"></td>
+                    <td class="items__direction" @click="to(item)">{{ item.from }} <icon name="angle-right"/> {{ item.to }}</td>
+                    <td class="items__location" @click="to(item)"><icon name="location-arrow"/> {{ item.location }}</td>
+                    <td :class="{ 'items__status': true, ['items__status--' + item.status]: true }" @click="to(item)">
                         <template v-if="item.status === 'handed'">
                             <icon name="check-circle"/> Вручено
                         </template>
@@ -28,7 +28,7 @@
                             {{ item.status }}
                         </template>
                     </td>
-                    <td :class="{ 'items__important': true, ['items__important--' + item.important]: true }">
+                    <td :class="{ 'items__important': true, ['items__important--' + item.important]: true }" @click="to(item)">
                         <template v-if="item.important === 'high'">
                             <icon name="exclamation-triangle"/> Срочная доставка
                         </template>
@@ -39,15 +39,15 @@
                             {{ item.important }}
                         </template>
                     </td>
-                    <td class="items__sender">{{ item.sender }}</td>
-                    <td class="items__checkbox">
+                    <td class="items__sender" @click="to(item)">{{ item.sender }}</td>
+                    <td class="items__checkbox" v-if="selectable">
                         <l-checkbox @change="changeSelect(item.key)" :checked="$store.state.parcels.selected[item.key]"/>
                     </td>
                 </tr>
             </tbody>
         </table>
         <transition name="fade">
-            <div class="items__spinner" v-if="loading">
+            <div v-if="loading">
                 <l-spinner/>
             </div>
         </transition>
@@ -72,6 +72,14 @@
                 default: false,
                 type: Boolean,
             },
+            selectable: {
+                default: true,
+                type: Boolean,
+            },
+            clickable: {
+                default: true,
+                type: Boolean,
+            },
         },
 
         watch: {
@@ -85,6 +93,11 @@
                 this.$store.commit('parcels/select', { id, value: !this.$store.state.parcels.selected[id] });
                 this.$emit('select');
             },
+            to(item) {
+                if (this.clickable) {
+                    this.$router.push('/parcels/' + item.key);
+                }
+            }
         }
     }
 </script>

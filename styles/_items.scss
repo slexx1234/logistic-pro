@@ -20,6 +20,10 @@
     }
   }
 
+  &--clickable .items__content {
+    cursor: pointer;
+  }
+
   &__content {
     &:before {
       content: "-";

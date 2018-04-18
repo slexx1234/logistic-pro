@@ -204,5 +204,33 @@ export default {
                 next();
             });
         },
+
+        getById({ state, commit, dispatch, rootState }, id) {
+            return new Promise((resolve, reject) => {
+                commit('setLoading', true);
+                if (typeof state.cache[id] !== 'undefined') {
+                    commit('setLoading', false);
+                    resolve(state.cache[id]);
+                } else {
+                    axios
+                        .get('parcels/' + id, {
+                            headers: {
+                                Authorization: 'Bearer ' + rootState.auth.accessToken,
+                            },
+                        })
+                        .then(result => {
+                            const parcel = result.data.data;
+                            commit('appendCache', [parcel]);
+                            commit('setLoading', false);
+                            resolve(parcel);
+                        })
+                        .catch(e => {
+                            commit('setLoading', false);
+                            console.log(e);
+                            resolve(null);
+                        });
+                }
+            });
+        },
     },
 };

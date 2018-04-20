@@ -23,6 +23,13 @@ export default {
 
             // ключ номер посылки, значение boolean
             selected: {},
+
+            // {
+            //     [номер посылки]: {
+            //         [ключ модели]: [массив записей истории...]
+            //     }
+            // }
+            history: {},
         };
     },
 
@@ -118,6 +125,14 @@ export default {
                 state.cache[parcel.key] = parcel;
             }
             state.search[query] = parcels.map(parcel => parcel.key);
+        },
+
+        saveHistory(state, { id, key, history }) {
+            if (typeof state.history[id] === 'undefined') {
+                state.history[id] = {};
+            }
+
+            state.history[id][key] = history;
         },
     },
 
@@ -250,6 +265,14 @@ export default {
             });
         },
 
+        /**
+         * Поиск посылок
+         * @param state
+         * @param commit
+         * @param rootState
+         * @param query
+         * @returns {Promise<any>}
+         */
         search({ state, commit, rootState }, query) {
             return new Promise((resolve, reject) => {
                 if (typeof state.search[query] !== 'undefined') {
@@ -279,6 +302,49 @@ export default {
                         });
                 }
             });
+        },
+
+        /**
+         * Получение записей истории
+         * @param state
+         * @param rootState
+         * @param commit
+         * @param id
+         * @param key
+         * @returns {Promise<any>}
+         * @example:
+         * // Получение истории изменения локации посылки
+         * this.$store.dispatch('parcels/getHistory', {
+         *     id: this.$route.params.id,
+         *     key: 'location',
+         * });
+         */
+        getHistory({ state, rootState, commit }, { id, key }) {
+            return new Promise((resolve, reject) => {
+                if (typeof state.history[id] === 'object' && typeof state.history[id][key] !== 'undefined') {
+                    resolve(state.history[id][key]);
+                } else {
+                    axios
+                        .get('/history', {
+                            params: {
+                                parcel: id,
+                                key,
+                            },
+                            headers: {
+                                Authorization: 'Bearer ' + rootState.auth.accessToken,
+                            }
+                        })
+                        .then(result => {
+                            let history = result.data.data;
+                            commit('saveHistory', { id, key, history });
+                            resolve(history);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                            resolve([]);
+                        });
+                }
+            })
         },
     },
 };

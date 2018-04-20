@@ -152,5 +152,30 @@ app.post('/parcels/:parcel', (req, res) => {
     });
 });
 
+app.get('/history', (req, res) => {
+    res.send({
+        data: [
+            {
+                id: 1,
+                value: 'Kirov S1',
+                datetime: '22.04.2018',
+                username: 'Вася',
+            },
+            {
+                id: 2,
+                value: 'Moscow SV47',
+                datetime: '23.04.2018',
+                username: 'Вася',
+            },
+            {
+                id: 3,
+                value: 'Tula SK1',
+                datetime: '24.04.2018',
+                username: 'Вася',
+            },
+        ],
+    })
+});
+
 app.listen(3333, () => console.log('Example app listening on port 3333!'));
 

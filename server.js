@@ -177,5 +177,5 @@ app.get('/history', (req, res) => {
     })
 });
 
-app.listen(3333, () => console.log('Example app listening on port 3333!'));
+app.listen(3333, () => console.log('Api server listening on port 3333!'));
 

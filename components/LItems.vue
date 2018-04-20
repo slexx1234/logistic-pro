@@ -18,26 +18,10 @@
                     <td class="items__direction" @click="to(item)">{{ item.from }} <icon name="angle-right"/> {{ item.to }}</td>
                     <td class="items__location" @click="to(item)"><icon name="location-arrow"/> {{ item.location }}</td>
                     <td :class="{ 'items__status': true, ['items__status--' + item.status]: true }" @click="to(item)">
-                        <template v-if="item.status === 'handed'">
-                            <icon name="check-circle"/> Вручено
-                        </template>
-                        <template v-else-if="item.status === 'send'">
-                            <icon name="paper-plane"/> В пути
-                        </template>
-                        <template v-else>
-                            {{ item.status }}
-                        </template>
+                        <l-items-status :status="item.status"/>
                     </td>
                     <td :class="{ 'items__important': true, ['items__important--' + item.important]: true }" @click="to(item)">
-                        <template v-if="item.important === 'high'">
-                            <icon name="exclamation-triangle"/> Срочная доставка
-                        </template>
-                        <template v-else-if="item.important === 'low'">
-                            <icon name="info"/> Обычная
-                        </template>
-                        <template v-else>
-                            {{ item.important }}
-                        </template>
+                        <l-items-important :important="item.important"/>
                     </td>
                     <td class="items__sender" @click="to(item)">{{ item.sender }}</td>
                     <td class="items__checkbox" v-if="selectable">
@@ -58,10 +42,14 @@
     import LCheckbox from "../components/LCheckbox";
     import LSpinner from "./LSpinner";
     import LButton from "./LButton";
+    import LItemsStatus from "./LItemsStatus";
+    import LItemsImportant from "./LItemsImportant";
 
     export default {
         name: 'l-items',
         components: {
+            LItemsImportant,
+            LItemsStatus,
             LButton,
             LSpinner,
             LCheckbox,

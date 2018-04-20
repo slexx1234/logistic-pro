@@ -5,13 +5,23 @@ export default {
 
     state() {
         return {
+            // ключ номер посялки, значение посылка
             cache: {},
+
+            // ключ фраза поиска, значение массив номеров посылок
+            search: {},
+
+            // ключ номер страница, значение массив номеров посылок
             pages: {},
             totalItems: 0,
             totalPages: 1,
             currentPage: 1,
+
+            // Массив текущих посылок на странице
             currentParcels: [],
             isLoading: true,
+
+            // ключ номер посылки, значение boolean
             selected: {},
         };
     },
@@ -101,6 +111,13 @@ export default {
                 state.cache[id].status = status;
                 state.cache[id].location = location;
             }
+        },
+
+        saveSearchResult(state, { query, parcels }) {
+            for(let parcel of parcels) {
+                state.cache[parcel.key] = parcel;
+            }
+            state.search[query] = parcels.map(parcel => parcel.key);
         },
     },
 
@@ -228,6 +245,37 @@ export default {
                             commit('setLoading', false);
                             console.log(e);
                             resolve(null);
+                        });
+                }
+            });
+        },
+
+        search({ state, commit, rootState }, query) {
+            return new Promise((resolve, reject) => {
+                if (typeof state.search[query] !== 'undefined') {
+                    let result = [];
+                    for(let id of state.search[query]) {
+                        result.push(state.cache[id]);
+                    }
+                    resolve(result);
+                } else {
+                    axios
+                        .get('/parcels', {
+                            params: {
+                                query,
+                            },
+                            headers: {
+                                Authorization: 'Bearer ' + rootState.auth.accessToken,
+                            }
+                        })
+                        .then(result => {
+                            let parcels = result.data.data;
+                            commit('saveSearchResult', { query, parcels });
+                            resolve(parcels);
+                        })
+                        .catch(e => {
+                            console.log(e);
+                            resolve([]);
                         });
                 }
             });

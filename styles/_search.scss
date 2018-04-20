@@ -13,6 +13,8 @@
     }
 
     &__field {
+        z-index: 9;
+        position: relative;
         .field__input {
             background: #42A5F4;
             color: #fff;
@@ -26,6 +28,9 @@
     }
 
     &__result {
+        z-index: 10;
+        max-height: 500px;
+        overflow: auto;
         background: #fff;
         position: absolute;
         top: calc(100% + 1.4rem);
@@ -74,5 +79,20 @@
         &-bottom {
             margin-top: 1.1rem;
         }
+    }
+
+    &__no-result {
+        padding: 3.7rem 2.9rem;
+        margin-top: 1.3rem;
+        font-size: 2rem;
+    }
+
+    &__overflow {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 5;
     }
 }

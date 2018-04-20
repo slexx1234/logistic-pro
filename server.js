@@ -2,6 +2,7 @@ const express = require('express');
 const faker = require('faker');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const _ = require('lodash');
 
 const app = express();
 
@@ -69,19 +70,44 @@ for (let i = 0; i < 1000; i++) {
 }
 
 app.get('/parcels', (req, res) => {
-    const page = Number(req.query.page);
-    let result = {
-        data: parcels.slice(page * 10 - 10, page * 10),
-        meta: {
-            pagination: {
-                total: parcels.length,
-                total_pages: Math.ceil(parcels.length / 10),
-                current_page: page, // Не понятно нафик это надо, в url же передаётся
-            }
-        },
-    };
+    if (typeof req.query.page !== 'undefined') {
+        // Пагинация
+        const page = Number(req.query.page);
+        let result = {
+            data: parcels.slice(page * 10 - 10, page * 10),
+            meta: {
+                pagination: {
+                    total: parcels.length,
+                    total_pages: Math.ceil(parcels.length / 10),
+                    current_page: page, // Не понятно нафик это надо, в url же передаётся
+                }
+            },
+        };
 
-    res.send(result);
+        res.send(result);
+    } else if (typeof req.query.query !== 'undefined') {
+        // Супер пупер полно текстый поиск)))))
+        const regex = new RegExp(_.escapeRegExp(req.query.query));
+        let result = [];
+        for(let parcel of parcels) {
+            if (regex.test(parcel.code)
+                || regex.test({handed: 'Вручено', send: 'В пути'}[parcel.status] || parcel.status)
+                || regex.test(parcel.sender)
+                || regex.test(parcel.to)
+                || regex.test(parcel.from)
+            ) {
+                    result.push(parcel);
+                }
+        }
+
+        res.send({
+            data: result,
+        });
+    } else {
+        res.send({
+            data: parcels,
+        });
+    }
 });
 
 app.get('/parcels/:parcel', (req, res) => {

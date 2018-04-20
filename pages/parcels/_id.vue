@@ -1,6 +1,6 @@
 <template>
     <l-container>
-        <l-items :loading="$store.state.parcels.isLoading" :items="items" :selectable="false" :clickable="false"/>
+        <l-items :loading="$store.state.parcels.isLoading" :items="typeof $store.state.parcels.cache[id] !== 'undefined' ? [$store.state.parcels.cache[id]] : []" :selectable="false" :clickable="false"/>
         <l-alert danger>
             К сожалению я понятия не имею что здесь писать. Были бы какие то примеры, данные, таблицы в excel с историей локаций. Где их могут хранить?
             Номер почтового отделения? Номер вагона поезда? Адресс склада? Получается просто список или как? Похоже да.
@@ -35,12 +35,6 @@
             id() {
                 return this.$route.params.id;
             },
-            items() {
-                let result = [];
-                if (typeof this.$store.state.parcels.cache[this.id] !== 'undefined')
-                    result.push(this.$store.state.parcels.cache[this.id]);
-                return result;
-            }
         },
     };
 </script>

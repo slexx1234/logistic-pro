@@ -1,7 +1,7 @@
 {
   "name": "logistic-pro",
   "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "description": "Logistic Pro",
   "author": "Alex <slexx1234@gmail.com>",
   "private": true,
   "scripts": {

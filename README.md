@@ -1,22 +1,44 @@
-# logistic-pro
+# Logistic Pro
 
-> Nuxt.js project
+Это тестовое задание с одного из собеседований, техническое задание и `psd` лежат в папке `/docs/`.
+Если интересно можно почитать. 
 
-## Build Setup
+Я писал время с помощью [TopTracker](https://www.toptal.com/tracker/), но к сожалению я не имею
+понятия как узнать на копмпьютере сколько в общем времени было затрачено, доступа к сайту 
+по неизвестным причинам не могу получить. Просто перестало коннектиться, возможно это 
+связанно с [блокировкой Telegram](https://www.google.ru/search?q=%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0+%D1%82%D0%B5%D0%BB%D0%B5%D0%B3%D1%80%D0%B0%D0%BC&oq=%D0%B1%D0%BB%D0%BE%D0%BA%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0+%D1%82%D0%B5&aqs=chrome.1.69i57j69i59j0l4.3461j0j7&sourceid=chrome&ie=UTF-8).
+Могу сказать что на всё потратил около 20 часов, скорее всего эта цифра меньше.
+
+Макет я не смог нарезать, просто фотошопа нет, поэтому иконки могут отличаться. Один шрифт
+не смог найти в сети, так как его нет в общем доступе, просят денег.
+
+Надеюсь то что я написал полностью соответствует техническому заданию.
+
+## Установка
 
 ``` bash
-# install dependencies
-$ npm install # Or yarn install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm start
-
-# generate static project
-$ npm run generate
+$ git clone git@github.com:slexx1234/logistic-pro.git
+$ cd logistic-pro
+$ npm install
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+Этого должно хватить.
+
+## Как это работает?
+
+1. Запускаем в терминале `npm run api-server`, это запустит `api` сервер с которым
+будет общаться приложение.
+2. Запускаем `npm run dev`.
+3. Окрываем в браузере [localhost:3000](http://localhost:3000/)
+
+Всё! Там будет форма входа, в неё можно писать что угодно, мой `api` сервер в любой не понятной
+ситуации отдаёт одно и тоже))) Ну почти, при каждом запуске список посылок перегенерируется.
+
+## Структура папок
+
+* `styles` - Стили
+* `locales` - Файлы переводов
+* `docs` - Техническое задание
+
+Остальное все стандартное для [nuxtjs](https://ru.nuxtjs.org/).
+
